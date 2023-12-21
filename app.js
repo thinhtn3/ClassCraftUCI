@@ -56,13 +56,13 @@ let createTableHeaders = (name, num, title) => {
     time.innerText = 'Time';
     const bldg = document.createElement('th');
     bldg.rowSpan = 2;
-    bldg.classList.add('smallTdTh')
+    bldg.classList.add('midTdTh')
     bldg.innerText = 'Building';
     const final = document.createElement('th');
     final.innerText = 'Final';
     final.rowSpan = 2;
     const enrollmentStatus = document.createElement('th');
-    enrollmentStatus.colSpan = 4;
+    enrollmentStatus.colSpan = 5;
     enrollmentStatus.innerText = 'Enrollment';
     const enrollmentStatusHeader1 = document.createElement('th');
     enrollmentStatusHeader1.innerText = 'Enrolled';
@@ -77,10 +77,15 @@ let createTableHeaders = (name, num, title) => {
     enrollmentStatusHeader4.innerText = 'Status';
     enrollmentStatusHeader4.classList.add('smallTdTh')
     const tr2 = document.createElement('tr');
+    const restriction = document.createElement('th');
+    restriction.innerText = `Restrictions`;
+    restriction.classList.add('midTdTh');
+
     tr2.append(enrollmentStatusHeader1);
     tr2.append(enrollmentStatusHeader2);
     tr2.append(enrollmentStatusHeader3);
     tr2.append(enrollmentStatusHeader4);
+    tr2.append(restriction);
     tr1.append(code);
     tr1.append(type);
     tr1.append(section);
@@ -125,7 +130,7 @@ let createCourse = (classes) => {
     newTr.append(courseTime)
     courseBuilding = document.createElement('td');
     courseBuilding.innerText = classes.meetings[0].bldg;
-    courseBuilding.classList.add('smallTdTh')
+    courseBuilding.classList.add('midTdTh')
     newTr.append(courseBuilding)
     courseFinal = document.createElement('td');
     courseFinal.innerText = classes.finalExam;
@@ -146,6 +151,10 @@ let createCourse = (classes) => {
     courseStatus.innerText = classes.status;
     courseStatus.classList.add('smallTdTh')
     newTr.append(courseStatus)
+    courseRestriction = document.createElement('td');
+    courseRestriction.innerText = classes.restrictions;
+    courseRestriction.classList.add('midTdTh');
+    newTr.append(courseRestriction)
     return newTr;
 }
 
@@ -155,6 +164,7 @@ let appendCourse = (data) => {
         courseDiv.append(createTableHeaders(number.deptCode, number.courseNumber, number.courseTitle));
         for (course of number.sections) {
             courseDiv.append(createCourse(course));
+            courseDiv.classList.add('courseDiv')
         }
         console.log(courseDiv)
         displayCourses.append(courseDiv);
@@ -168,6 +178,7 @@ let appendCourseGe = (data) => {
                 let courseDiv = document.createElement('div');
                 courseDiv.append(createTableHeaders(number.deptCode, number.courseNumber, number.courseTitle));
                 for (course of number.sections) {
+                    courseDiv.classList.add('courseDiv')
                     courseDiv.append(createCourse(course));
                 }
                 console.log(courseDiv)
