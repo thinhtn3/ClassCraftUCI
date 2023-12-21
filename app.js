@@ -22,14 +22,6 @@ let checkDepartmentTrue = () => {
     }
 }
 
-let checkCourseNumberTrue = () => {
-    if (!selectedCourseNumber.value.trim()) {
-        return false
-    } else if (selectedCourseNumber.value.trim() !== '') {
-        return true
-    }
-}
-
 let createTableHeaders = (name, num, title) => {
     const nameNum = document.createElement('caption');
     const span = document.createElement(`span`);
